@@ -4,7 +4,7 @@ def load_pjm_data(file_path: str) -> pd.DataFrame:
     try:
         df = pd.read_csv(file_path)  
     except FileNotFoundError:
-        print("Файл не найден.")
+        print("File not found")
         return pd.DataFrame()
 
     df["Datetime"] = pd.to_datetime(df["Datetime"])
@@ -17,13 +17,10 @@ def load_pjm_data(file_path: str) -> pd.DataFrame:
 
     return df
 
-
-
-   
-
 if __name__ == "__main__":
     path = ("data/AEP_hourly.csv")
     data = load_pjm_data(path)
 
-    print(f"{data.index[0]},\n{data.index[-1]},\n{data.head()}")
+    if not data.empty:
+        print(f"{data.index[0]},\n{data.index[-1]},\n{data.head()}")
     
